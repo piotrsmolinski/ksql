@@ -444,7 +444,8 @@ public class KsqlResourceTest {
         Optional.of(authorizationValidator),
         errorsHandler,
         denyListPropertyValidator,
-        commandRunnerWarning
+        commandRunnerWarning,
+        ksqlRestConfig
     );
 
     // When:
@@ -476,7 +477,8 @@ public class KsqlResourceTest {
         Optional.of(authorizationValidator),
         errorsHandler,
         denyListPropertyValidator,
-        commandRunnerWarning
+        commandRunnerWarning,
+        ksqlRestConfig
     );
 
     // When:
@@ -2505,7 +2507,8 @@ public class KsqlResourceTest {
         Optional.of(authorizationValidator),
         errorsHandler,
         denyListPropertyValidator,
-        commandRunnerWarning
+        commandRunnerWarning,
+        ksqlRestConfig
     );
 
     ksqlResource.configure(ksqlConfig);
@@ -2599,7 +2602,8 @@ public class KsqlResourceTest {
         Optional.of(authorizationValidator),
         errorsHandler,
         denyListPropertyValidator,
-        commandRunnerWarning
+        commandRunnerWarning,
+        ksqlRestConfig
     );
     final Map<String, Object> props = new HashMap<>(ksqlRestConfig.getKsqlConfigProperties());
     props.put(KsqlConfig.KSQL_PROPERTIES_OVERRIDES_DENYLIST,

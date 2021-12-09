@@ -25,6 +25,7 @@ import io.confluent.ksql.rest.entity.CreateConnectorEntity;
 import io.confluent.ksql.rest.entity.ErrorEntity;
 import io.confluent.ksql.rest.entity.KsqlEntity;
 import io.confluent.ksql.rest.entity.WarningEntity;
+import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.services.ConnectClient;
 import io.confluent.ksql.services.ConnectClient.ConnectResponse;
 import io.confluent.ksql.services.ServiceContext;
@@ -48,7 +49,8 @@ public final class ConnectExecutor {
       final ConfiguredStatement<CreateConnector> statement,
       final SessionProperties sessionProperties,
       final KsqlExecutionContext executionContext,
-      final ServiceContext serviceContext
+      final ServiceContext serviceContext,
+      final KsqlRestConfig restConfig
   ) {
     final CreateConnector createConnector = statement.getStatement();
     final ConnectClient client = serviceContext.getConnectClient();
@@ -90,8 +92,14 @@ public final class ConnectExecutor {
       }
     }
 
-    return StatementExecutorResponse.handled(response.error()
-        .map(err -> new ErrorEntity(statement.getStatementText(), err)));
+    final ConnectServerErrors errorHandler =
+        restConfig.getConfiguredInstance(
+            KsqlRestConfig.KSQL_CONNECT_SERVER_ERROR_HANDLER,
+            ConnectServerErrors.class
+        );
+
+    return StatementExecutorResponse.handled(errorHandler.handle(statement,
+        response));
   }
 
   private static List<String> validate(final CreateConnector createConnector,

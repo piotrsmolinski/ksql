@@ -113,7 +113,8 @@ public class ListSourceExecutorTest {
             engine.configure("SHOW STREAMS;"),
             SESSION_PROPERTIES,
             engine.getEngine(),
-            engine.getServiceContext()
+            engine.getServiceContext(),
+            null
         ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -149,7 +150,8 @@ public class ListSourceExecutorTest {
             engine.configure("SHOW STREAMS EXTENDED;"),
             SESSION_PROPERTIES,
             engine.getEngine(),
-            engine.getServiceContext()
+            engine.getServiceContext(),
+            null
         ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -191,7 +193,8 @@ public class ListSourceExecutorTest {
             engine.configure("DESCRIBE STREAMS;"),
             SESSION_PROPERTIES,
             engine.getEngine(),
-            engine.getServiceContext()
+            engine.getServiceContext(),
+            null
         ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -232,7 +235,8 @@ public class ListSourceExecutorTest {
             engine.configure("LIST TABLES;"),
             SESSION_PROPERTIES,
             engine.getEngine(),
-            engine.getServiceContext()
+            engine.getServiceContext(),
+            null
         ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -268,7 +272,8 @@ public class ListSourceExecutorTest {
             engine.configure("LIST TABLES EXTENDED;"),
             SESSION_PROPERTIES,
             engine.getEngine(),
-            engine.getServiceContext()
+            engine.getServiceContext(),
+            null
         ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -311,7 +316,8 @@ public class ListSourceExecutorTest {
             engine.configure("DESCRIBE TABLES;"),
             SESSION_PROPERTIES,
             engine.getEngine(),
-            engine.getServiceContext()
+            engine.getServiceContext(),
+            null
         ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -360,7 +366,8 @@ public class ListSourceExecutorTest {
                 SessionConfig.of(engine.getKsqlConfig(), ImmutableMap.of())),
             SESSION_PROPERTIES,
             engine.getEngine(),
-            engine.getServiceContext()
+            engine.getServiceContext(),
+            null
         ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -400,7 +407,8 @@ public class ListSourceExecutorTest {
             engine.configure("DESCRIBE S;"),
             SESSION_PROPERTIES,
             engine.getEngine(),
-            engine.getServiceContext()
+            engine.getServiceContext(),
+            null
         )
     );
 
@@ -427,7 +435,8 @@ public class ListSourceExecutorTest {
         engine.configure("SHOW STREAMS;"),
         SESSION_PROPERTIES,
         engine.getEngine(),
-        serviceContext
+        serviceContext,
+        null
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -486,7 +495,8 @@ public class ListSourceExecutorTest {
         engine.configure("SHOW STREAMS EXTENDED;"),
         SESSION_PROPERTIES,
         engine.getEngine(),
-        serviceContext
+        serviceContext,
+        null
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -506,7 +516,8 @@ public class ListSourceExecutorTest {
         engine.configure("SHOW TABLES EXTENDED;"),
         SESSION_PROPERTIES,
         engine.getEngine(),
-        serviceContext
+        serviceContext,
+        null
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -525,7 +536,8 @@ public class ListSourceExecutorTest {
         engine.configure("DESCRIBE STREAM1 EXTENDED;"),
         SESSION_PROPERTIES,
         engine.getEngine(),
-        serviceContext
+        serviceContext,
+        null
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
