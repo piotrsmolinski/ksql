@@ -77,7 +77,6 @@ public class ListTypesExecutorTest {
             SessionConfig.of(KSQL_CONFIG, ImmutableMap.of())),
         mock(SessionProperties.class),
         context,
-        null,
         null
     ).getEntity();
 

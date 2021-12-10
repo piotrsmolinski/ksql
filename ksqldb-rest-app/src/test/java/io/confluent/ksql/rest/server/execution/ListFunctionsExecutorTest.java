@@ -44,8 +44,7 @@ public class ListFunctionsExecutorTest {
         engine.configure("LIST FUNCTIONS;"),
         mock(SessionProperties.class),
         engine.getEngine(),
-        engine.getServiceContext(),
-        null
+        engine.getServiceContext()
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:

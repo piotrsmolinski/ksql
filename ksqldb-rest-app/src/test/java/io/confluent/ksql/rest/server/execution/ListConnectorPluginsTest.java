@@ -82,11 +82,7 @@ public class ListConnectorPluginsTest {
 
         // When:
         final Optional<KsqlEntity> entity = ListConnectorPluginsExecutor
-            .execute(statement,
-                mock(SessionProperties.class),
-                engine,
-                serviceContext,
-                null).getEntity();
+            .execute(statement, mock(SessionProperties.class), engine, serviceContext).getEntity();
 
         // Then:
         assertThat("expected response!", entity.isPresent());

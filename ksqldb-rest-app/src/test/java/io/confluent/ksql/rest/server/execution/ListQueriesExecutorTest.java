@@ -131,8 +131,7 @@ public class ListQueriesExecutorTest {
         engine.configure("SHOW QUERIES;"),
         mock(SessionProperties.class),
         engine.getEngine(),
-        engine.getServiceContext(),
-        null
+        engine.getServiceContext()
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     assertThat(queries.getQueries(), is(empty()));
@@ -153,8 +152,7 @@ public class ListQueriesExecutorTest {
         showQueries,
         sessionProperties,
         engine,
-        this.engine.getServiceContext(),
-        null
+        this.engine.getServiceContext()
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     assertThat(queries.getQueries(), containsInAnyOrder(persistentQueryMetadataToRunningQuery(metadata, queryStatusCount)));
@@ -189,8 +187,7 @@ public class ListQueriesExecutorTest {
         showQueries,
         sessionProperties,
         engine,
-        serviceContext,
-        null
+        serviceContext
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then
@@ -223,8 +220,7 @@ public class ListQueriesExecutorTest {
         showQueries,
         sessionProperties,
         engine,
-        serviceContext,
-        null
+        serviceContext
     ).getEntity().orElseThrow(IllegalStateException::new);
     
     // Then
@@ -255,8 +251,7 @@ public class ListQueriesExecutorTest {
         showQueries,
         sessionProperties,
         engine,
-        serviceContext,
-        null
+        serviceContext
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then
@@ -284,8 +279,7 @@ public class ListQueriesExecutorTest {
         showQueries,
         sessionProperties,
         engine,
-        serviceContext,
-        null
+        serviceContext
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then
@@ -306,8 +300,7 @@ public class ListQueriesExecutorTest {
         showQueries,
         sessionProperties,
         engine,
-        this.engine.getServiceContext(),
-        null
+        this.engine.getServiceContext()
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then
@@ -348,8 +341,7 @@ public class ListQueriesExecutorTest {
         showQueries,
         sessionProperties,
         engine,
-        serviceContext,
-        null
+        serviceContext
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then
@@ -386,8 +378,7 @@ public class ListQueriesExecutorTest {
         showQueries,
         sessionProperties,
         engine,
-        serviceContext,
-        null
+        serviceContext
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then
@@ -421,8 +412,7 @@ public class ListQueriesExecutorTest {
         showQueries,
         sessionProperties,
         engine,
-        serviceContext,
-        null
+        serviceContext
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then
@@ -453,8 +443,7 @@ public class ListQueriesExecutorTest {
         showQueries,
         sessionProperties,
         engine,
-        serviceContext,
-        null
+        serviceContext
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then

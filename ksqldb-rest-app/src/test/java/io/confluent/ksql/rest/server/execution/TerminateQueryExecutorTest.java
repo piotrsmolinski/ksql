@@ -28,7 +28,6 @@ import io.confluent.ksql.rest.SessionProperties;
 import io.confluent.ksql.rest.entity.KsqlEntity;
 import io.confluent.ksql.rest.entity.StreamsTaskMetadata;
 import io.confluent.ksql.rest.entity.TerminateQueryEntity;
-import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.rest.server.TemporaryEngine;
 import io.confluent.ksql.statement.ConfiguredStatement;
 import io.confluent.ksql.util.KsqlException;
@@ -69,8 +68,7 @@ public class TerminateQueryExecutorTest {
         terminatePersistent,
         mock(SessionProperties.class),
         engine,
-        this.engine.getServiceContext(),
-        mock(KsqlRestConfig.class)
+        this.engine.getServiceContext()
     ).getEntity();
 
     // Then:
@@ -88,8 +86,7 @@ public class TerminateQueryExecutorTest {
         terminatePersistent,
         mock(SessionProperties.class),
         engine,
-        this.engine.getServiceContext(),
-        mock(KsqlRestConfig.class)
+        this.engine.getServiceContext()
     ).getEntity();
 
     // Then:
@@ -107,8 +104,7 @@ public class TerminateQueryExecutorTest {
         terminatePersistent,
         mock(SessionProperties.class),
         engine,
-        this.engine.getServiceContext(),
-        mock(KsqlRestConfig.class)
+        this.engine.getServiceContext()
     ).getEntity();
 
     // Then:
@@ -131,8 +127,7 @@ public class TerminateQueryExecutorTest {
         terminateTransient,
         mock(SessionProperties.class),
         engine,
-        this.engine.getServiceContext(),
-        mock(KsqlRestConfig.class)
+        this.engine.getServiceContext()
     ).getEntity();
 
     // Then:
@@ -148,8 +143,7 @@ public class TerminateQueryExecutorTest {
             engine.configure("TERMINATE TRANSIENT_QUERY;"),
             mock(SessionProperties.class),
             engine.getEngine(),
-            this.engine.getServiceContext(),
-            mock(KsqlRestConfig.class)
+            this.engine.getServiceContext()
         ));
 
     // Then:

@@ -228,7 +228,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey("key"));
@@ -247,7 +247,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey((String) null));
@@ -270,7 +270,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey("newKey"));
@@ -291,7 +291,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey("str"));
@@ -312,7 +312,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey((String) null));
@@ -333,7 +333,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey("str"));
@@ -352,7 +352,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey("str"));
@@ -373,7 +373,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey("key"));
@@ -392,7 +392,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(valueSerializer).serialize(TOPIC_NAME, genericRow("str", 2L));
@@ -419,7 +419,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey("str"));
@@ -445,7 +445,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey((String) null));
@@ -467,7 +467,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(valueSerializer).serialize(TOPIC_NAME, genericRow("oo"));
@@ -494,7 +494,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(valueSerializer).serialize(TOPIC_NAME, genericRow("o"));
@@ -515,7 +515,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(valueSerializer).serialize(TOPIC_NAME, genericRow("str", 1L));
@@ -546,12 +546,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -583,12 +578,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -616,12 +606,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -645,12 +630,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -674,12 +654,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -703,12 +678,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -739,11 +709,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine, serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -774,12 +740,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -799,12 +760,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -828,12 +784,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -855,12 +806,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -881,7 +827,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey("key"));
@@ -903,7 +849,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey("key"));
@@ -924,7 +870,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey((String) null));
@@ -947,12 +893,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -974,12 +915,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -1010,7 +946,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerializer).serialize(TOPIC_NAME, genericKey("foo"));
@@ -1042,12 +978,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -1068,7 +999,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext, null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(keySerdeFactory).create(
@@ -1118,11 +1049,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -1160,12 +1087,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -1203,12 +1125,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -1234,12 +1151,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -1264,12 +1176,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:
@@ -1290,12 +1197,7 @@ public class InsertValuesExecutorTest {
     );
 
     // When:
-    executor.execute(
-        statement,
-        mock(SessionProperties.class),
-        engine,
-        serviceContext,
-        null);
+    executor.execute(statement, mock(SessionProperties.class), engine, serviceContext);
 
     // Then:
     verify(producer).send(new ProducerRecord<>(TOPIC_NAME, null, 1L, KEY, VALUE));
@@ -1318,12 +1220,7 @@ public class InsertValuesExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> executor.execute(
-            statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null)
+        () -> executor.execute(statement, mock(SessionProperties.class), engine, serviceContext)
     );
 
     // Then:

@@ -21,7 +21,6 @@ import io.confluent.ksql.rest.SessionProperties;
 import io.confluent.ksql.rest.entity.DropConnectorEntity;
 import io.confluent.ksql.rest.entity.ErrorEntity;
 import io.confluent.ksql.rest.entity.WarningEntity;
-import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.services.ConnectClient.ConnectResponse;
 import io.confluent.ksql.services.ServiceContext;
 import io.confluent.ksql.statement.ConfiguredStatement;
@@ -38,8 +37,7 @@ public final class DropConnectorExecutor {
       final ConfiguredStatement<DropConnector> statement,
       final SessionProperties sessionProperties,
       final KsqlExecutionContext executionContext,
-      final ServiceContext serviceContext,
-      final KsqlRestConfig restConfig
+      final ServiceContext serviceContext
   ) {
     final String connectorName = statement.getStatement().getConnectorName();
     final boolean ifExists = statement.getStatement().getIfExists();

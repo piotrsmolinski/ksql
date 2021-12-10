@@ -26,7 +26,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
-import com.google.common.collect.ImmutableMap;
 import io.confluent.kafka.schemaregistry.ParsedSchema;
 import io.confluent.kafka.schemaregistry.client.SchemaMetadata;
 import io.confluent.kafka.schemaregistry.client.SchemaRegistryClient;
@@ -50,7 +49,6 @@ import io.confluent.ksql.parser.tree.InsertValues;
 import io.confluent.ksql.planner.plan.ConfiguredKsqlPlan;
 import io.confluent.ksql.query.QueryId;
 import io.confluent.ksql.rest.SessionProperties;
-import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.schema.ksql.inference.DefaultSchemaInjector;
 import io.confluent.ksql.schema.ksql.inference.SchemaRegisterInjector;
 import io.confluent.ksql.schema.ksql.inference.SchemaRegistryTopicSchemaSupplier;
@@ -341,8 +339,7 @@ public final class TestExecutorUtil {
               insertValues,
               sessionProperties,
               engine,
-              engine.getServiceContext(),
-              new KsqlRestConfig(ImmutableMap.of())
+              engine.getServiceContext()
           );
           continue;
         }

@@ -48,7 +48,6 @@ import io.confluent.ksql.rest.EndpointResponse;
 import io.confluent.ksql.rest.Errors;
 import io.confluent.ksql.rest.entity.CommandId;
 import io.confluent.ksql.rest.entity.KsqlRequest;
-import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.rest.server.resources.KsqlResource;
 import io.confluent.ksql.rest.server.state.ServerState;
 import io.confluent.ksql.rest.util.ClusterTerminator;
@@ -85,7 +84,6 @@ import org.mockito.Mock;
 
 public class RecoveryTest {
 
-  private static final KsqlRestConfig restConfig = new KsqlRestConfig(ImmutableMap.of());
   private final KsqlConfig ksqlConfig = KsqlConfigTestUtil.create(
       "0.0.0.0",
       ImmutableMap.of(StreamsConfig.APPLICATION_SERVER_CONFIG, "http://localhost:23")
@@ -256,8 +254,7 @@ public class RecoveryTest {
           ()->{},
           Optional.of((sc, metastore, statement) -> { }),
           errorHandler,
-          denyListPropertyValidator,
-          restConfig
+          denyListPropertyValidator
       );
 
       this.statementExecutor.configure(ksqlConfig);

@@ -74,8 +74,7 @@ public class ListTopicsExecutorTest {
             engine.configure("LIST TOPICS;"),
             mock(SessionProperties.class),
             engine.getEngine(),
-            serviceContext,
-            null
+            serviceContext
         ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -98,8 +97,7 @@ public class ListTopicsExecutorTest {
             engine.configure("LIST ALL TOPICS;"),
             mock(SessionProperties.class),
             engine.getEngine(),
-            serviceContext,
-            null
+            serviceContext
         ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -122,8 +120,7 @@ public class ListTopicsExecutorTest {
             engine.configure("LIST TOPICS;"),
             mock(SessionProperties.class),
             engine.getEngine(),
-            serviceContext,
-            null
+            serviceContext
         ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -152,8 +149,7 @@ public class ListTopicsExecutorTest {
             engine.configure("LIST TOPICS EXTENDED;"),
             mock(SessionProperties.class),
             engine.getEngine(),
-            serviceContext,
-            null
+            serviceContext
         ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:

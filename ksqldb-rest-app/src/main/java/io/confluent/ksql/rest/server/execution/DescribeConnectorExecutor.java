@@ -27,7 +27,6 @@ import io.confluent.ksql.rest.entity.ErrorEntity;
 import io.confluent.ksql.rest.entity.KsqlWarning;
 import io.confluent.ksql.rest.entity.SourceDescription;
 import io.confluent.ksql.rest.entity.SourceDescriptionFactory;
-import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.services.ConnectClient.ConnectResponse;
 import io.confluent.ksql.services.ServiceContext;
 import io.confluent.ksql.statement.ConfiguredStatement;
@@ -66,8 +65,7 @@ public final class DescribeConnectorExecutor {
       final ConfiguredStatement<DescribeConnector> configuredStatement,
       final SessionProperties sessionProperties,
       final KsqlExecutionContext ksqlExecutionContext,
-      final ServiceContext serviceContext,
-      final KsqlRestConfig restConfig
+      final ServiceContext serviceContext
   ) {
     final String connectorName = configuredStatement
         .getStatement()

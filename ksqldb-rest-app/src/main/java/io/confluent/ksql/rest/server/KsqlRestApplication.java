@@ -924,8 +924,7 @@ public final class KsqlRestApplication implements Executable {
         versionChecker::updateLastRequestTime,
         authorizationValidator,
         errorHandler,
-        denyListPropertyValidator,
-        restConfig
+        denyListPropertyValidator
     );
 
     final List<KsqlServerPrecondition> preconditions = restConfig.getConfiguredInstances(

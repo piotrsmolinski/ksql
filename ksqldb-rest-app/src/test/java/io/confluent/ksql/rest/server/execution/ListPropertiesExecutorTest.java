@@ -39,7 +39,10 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.streams.StreamsConfig;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -71,8 +74,7 @@ public class ListPropertiesExecutorTest {
         engine.configure("LIST PROPERTIES;"),
         mock(SessionProperties.class),
         engine.getEngine(),
-        engine.getServiceContext(),
-        null
+        engine.getServiceContext()
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -87,8 +89,7 @@ public class ListPropertiesExecutorTest {
         engine.configure("LIST PROPERTIES;"),
         mock(SessionProperties.class),
         engine.getEngine(),
-        engine.getServiceContext(),
-        null
+        engine.getServiceContext()
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -103,8 +104,7 @@ public class ListPropertiesExecutorTest {
         engine.configure("LIST PROPERTIES;"),
         mock(SessionProperties.class),
         engine.getEngine(),
-        engine.getServiceContext(),
-        null
+        engine.getServiceContext()
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -122,8 +122,7 @@ public class ListPropertiesExecutorTest {
             .withConfigOverrides(ImmutableMap.of("ksql.streams.auto.offset.reset", "latest")),
         mock(SessionProperties.class),
         engine.getEngine(),
-        engine.getServiceContext(),
-        null
+        engine.getServiceContext()
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -140,8 +139,7 @@ public class ListPropertiesExecutorTest {
         engine.configure("LIST PROPERTIES;"),
         mock(SessionProperties.class),
         engine.getEngine(),
-        engine.getServiceContext(),
-        null
+        engine.getServiceContext()
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -159,8 +157,7 @@ public class ListPropertiesExecutorTest {
                 "ksql.streams.topic.min.insync.replicas", "2"))),
         mock(SessionProperties.class),
         engine.getEngine(),
-        engine.getServiceContext(),
-        null
+        engine.getServiceContext()
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:
@@ -190,8 +187,7 @@ public class ListPropertiesExecutorTest {
                 "ksql.connect.worker.config", connectPropsFile))),
         mock(SessionProperties.class),
         engine.getEngine(),
-        engine.getServiceContext(),
-        null
+        engine.getServiceContext()
     ).getEntity().orElseThrow(IllegalStateException::new);
 
     // Then:

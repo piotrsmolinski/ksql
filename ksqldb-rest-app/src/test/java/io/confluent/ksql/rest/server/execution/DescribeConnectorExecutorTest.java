@@ -172,11 +172,7 @@ public class DescribeConnectorExecutorTest {
 
     // When:
     final Optional<KsqlEntity> entity = executor
-        .execute(describeStatement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null).getEntity();
+        .execute(describeStatement, mock(SessionProperties.class), engine, serviceContext).getEntity();
 
     // Then:
     verify(engine).getMetaStore();
@@ -206,11 +202,7 @@ public class DescribeConnectorExecutorTest {
 
     // When:
     final Optional<KsqlEntity> entity = executor
-        .execute(describeStatement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null).getEntity();
+        .execute(describeStatement, mock(SessionProperties.class), engine, serviceContext).getEntity();
 
     // Then:
     verify(engine).getMetaStore();
@@ -234,11 +226,7 @@ public class DescribeConnectorExecutorTest {
 
     // When:
     final Optional<KsqlEntity> entity = executor
-        .execute(describeStatement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null).getEntity();
+        .execute(describeStatement, mock(SessionProperties.class), engine, serviceContext).getEntity();
 
     // Then:
     verify(connectClient).status("connector");
@@ -254,11 +242,7 @@ public class DescribeConnectorExecutorTest {
 
     // When:
     final Optional<KsqlEntity> entity = executor
-        .execute(describeStatement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null).getEntity();
+        .execute(describeStatement, mock(SessionProperties.class), engine, serviceContext).getEntity();
 
     // Then:
     verify(connectClient).status("connector");
@@ -301,11 +285,7 @@ public class DescribeConnectorExecutorTest {
 
     // When:
     final Optional<KsqlEntity> entity = executor
-        .execute(describeStatement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null).getEntity();
+        .execute(describeStatement, mock(SessionProperties.class), engine, serviceContext).getEntity();
 
     // Then:
     verify(connectClient).status("connector");

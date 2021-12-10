@@ -46,7 +46,6 @@ import io.confluent.ksql.parser.tree.UndefineVariable;
 import io.confluent.ksql.parser.tree.UnsetProperty;
 import io.confluent.ksql.rest.Errors;
 import io.confluent.ksql.rest.SessionProperties;
-import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.rest.server.execution.DescribeConnectorExecutor;
 import io.confluent.ksql.rest.server.execution.DescribeFunctionExecutor;
 import io.confluent.ksql.rest.server.execution.ExplainExecutor;
@@ -76,8 +75,7 @@ public enum CustomValidators {
       (statement,
           sessionProperties,
           executionContext,
-          serviceContext,
-          restConfig) -> {
+          serviceContext) -> {
         throw new KsqlRestException(Errors.queryEndpoint(statement.getStatementText()));
       }),
   PRINT_TOPIC(PrintTopic.class, PrintTopicValidator::validate),
@@ -139,13 +137,11 @@ public enum CustomValidators {
       final ConfiguredStatement<?> statement,
       final SessionProperties sessionProperties,
       final KsqlExecutionContext executionContext,
-      final ServiceContext serviceContext,
-      final KsqlRestConfig restConfig) throws KsqlException {
+      final ServiceContext serviceContext) throws KsqlException {
     validator.validate(
         statement,
         sessionProperties,
         executionContext,
-        serviceContext,
-        restConfig);
+        serviceContext);
   }
 }

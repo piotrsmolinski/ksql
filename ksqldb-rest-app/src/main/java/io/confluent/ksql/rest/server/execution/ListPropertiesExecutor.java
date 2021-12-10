@@ -21,7 +21,6 @@ import io.confluent.ksql.parser.tree.ListProperties;
 import io.confluent.ksql.rest.SessionProperties;
 import io.confluent.ksql.rest.entity.PropertiesList;
 import io.confluent.ksql.rest.entity.PropertiesList.Property;
-import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.services.ServiceContext;
 import io.confluent.ksql.statement.ConfiguredStatement;
 import io.confluent.ksql.util.KsqlConfig;
@@ -53,8 +52,7 @@ public final class ListPropertiesExecutor {
       final ConfiguredStatement<ListProperties> statement,
       final SessionProperties sessionProperties,
       final KsqlExecutionContext executionContext,
-      final ServiceContext serviceContext,
-      final KsqlRestConfig restConfig
+      final ServiceContext serviceContext
   ) {
     final KsqlConfigResolver resolver = new KsqlConfigResolver();
 

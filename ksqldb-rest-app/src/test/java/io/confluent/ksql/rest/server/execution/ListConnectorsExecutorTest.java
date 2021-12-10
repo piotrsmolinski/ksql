@@ -114,11 +114,7 @@ public class ListConnectorsExecutorTest {
 
     // When:
     final Optional<KsqlEntity> entity = ListConnectorsExecutor
-        .execute(statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null).getEntity();
+        .execute(statement, mock(SessionProperties.class), engine, serviceContext).getEntity();
 
     // Then:
     assertThat("expected response!", entity.isPresent());
@@ -147,11 +143,7 @@ public class ListConnectorsExecutorTest {
 
     // When:
     final Optional<KsqlEntity> entity = ListConnectorsExecutor
-        .execute(statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null).getEntity();
+        .execute(statement, mock(SessionProperties.class), engine, serviceContext).getEntity();
 
     // Then:
     assertThat("expected response!", entity.isPresent());
@@ -179,11 +171,7 @@ public class ListConnectorsExecutorTest {
 
     // When:
     final Optional<KsqlEntity> entity = ListConnectorsExecutor
-        .execute(statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null).getEntity();
+        .execute(statement, mock(SessionProperties.class), engine, serviceContext).getEntity();
 
     // Then:
     assertThat("expected response!", entity.isPresent());
@@ -208,11 +196,7 @@ public class ListConnectorsExecutorTest {
 
     // When:
     final Optional<KsqlEntity> entity = ListConnectorsExecutor
-        .execute(statement,
-            mock(SessionProperties.class),
-            engine,
-            serviceContext,
-            null).getEntity();
+        .execute(statement, mock(SessionProperties.class), engine, serviceContext).getEntity();
 
     // Then:
     assertThat("expected response!", entity.isPresent());

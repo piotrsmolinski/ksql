@@ -28,7 +28,6 @@ import io.confluent.ksql.parser.tree.InsertInto;
 import io.confluent.ksql.parser.tree.Statement;
 import io.confluent.ksql.parser.tree.TerminateQuery;
 import io.confluent.ksql.rest.SessionProperties;
-import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.rest.server.computation.ValidatedCommandFactory;
 import io.confluent.ksql.rest.util.QueryCapacityUtil;
 import io.confluent.ksql.services.ServiceContext;
@@ -105,7 +104,6 @@ public class RequestValidator {
       final ServiceContext serviceContext,
       final List<ParsedStatement> statements,
       final SessionProperties sessionProperties,
-      final KsqlRestConfig restConfig,
       final String sql
   ) {
     requireSandbox(serviceContext);
@@ -132,7 +130,6 @@ public class RequestValidator {
               configured,
               sessionProperties,
               ctx,
-              restConfig,
               injector
           );
 
@@ -155,7 +152,6 @@ public class RequestValidator {
       final ConfiguredStatement<T> configured,
       final SessionProperties sessionProperties,
       final KsqlExecutionContext executionContext,
-      final KsqlRestConfig restConfig,
       final Injector injector
   ) throws KsqlStatementException  {
     final Statement statement = configured.getStatement();
@@ -168,8 +164,7 @@ public class RequestValidator {
           configured,
           sessionProperties,
           executionContext,
-          serviceContext,
-          restConfig
+          serviceContext
       );
     } else if (KsqlEngine.isExecutableStatement(configured.getStatement())
         || configured.getStatement() instanceof TerminateQuery) {

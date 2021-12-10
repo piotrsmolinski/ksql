@@ -180,7 +180,7 @@ public class DistributingExecutorTest {
   @Test
   public void shouldEnqueueSuccessfulCommandTransactionally() {
     // When:
-    distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext, null);
+    distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext);
 
     // Then:
     final InOrder inOrder = Mockito.inOrder(transactionalProducer, queue, validatedCommandFactory);
@@ -208,7 +208,7 @@ public class DistributingExecutorTest {
     // When:
     assertThrows(
         KsqlServerException.class,
-        () -> distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext, null)
+        () -> distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext)
     );
     verify(transactionalProducer, times(0)).abortTransaction();
   }
@@ -216,7 +216,7 @@ public class DistributingExecutorTest {
   @Test
   public void shouldInferSchemas() {
     // When:
-    distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext, null);
+    distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext);
 
     // Then:
     verify(schemaInjector, times(1)).inject(eq(CONFIGURED_STATEMENT));
@@ -229,8 +229,7 @@ public class DistributingExecutorTest {
         (CommandStatusEntity) distributor.execute(
             CONFIGURED_STATEMENT,
             executionContext,
-            securityContext,
-            null
+            securityContext
         )
             .getEntity()
             .orElseThrow(null);
@@ -248,7 +247,7 @@ public class DistributingExecutorTest {
     // Then:
     assertThrows(
         KsqlServerException.class,
-        () -> distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext, null)
+        () -> distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext)
     );
     verify(transactionalProducer, never()).initTransactions();
   }
@@ -263,7 +262,7 @@ public class DistributingExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlServerException.class,
-        () -> distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext, null)
+        () -> distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext)
     );
 
     // Then:
@@ -286,7 +285,7 @@ public class DistributingExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> distributor.execute(configured, executionContext, securityContext, null)
+        () -> distributor.execute(configured, executionContext, securityContext)
     );
 
     // Then:
@@ -311,7 +310,7 @@ public class DistributingExecutorTest {
     // When:
     assertThrows(
         KsqlTopicAuthorizationException.class,
-        () -> distributor.execute(configured, executionContext, userSecurityContext, null)
+        () -> distributor.execute(configured, executionContext, userSecurityContext)
     );
   }
 
@@ -336,7 +335,7 @@ public class DistributingExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlServerException.class,
-        () -> distributor.execute(configured, executionContext, userSecurityContext, null)
+        () -> distributor.execute(configured, executionContext, userSecurityContext)
     );
 
     // Then:
@@ -356,11 +355,7 @@ public class DistributingExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> distributor.execute(
-            configured,
-            executionContext,
-            mock(KsqlSecurityContext.class),
-            null)
+        () -> distributor.execute(configured, executionContext, mock(KsqlSecurityContext.class))
     );
 
     // Then:
@@ -383,11 +378,7 @@ public class DistributingExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> distributor.execute(
-            configured,
-            executionContext,
-            mock(KsqlSecurityContext.class),
-            null)
+        () -> distributor.execute(configured, executionContext, mock(KsqlSecurityContext.class))
     );
 
     // Then:
@@ -411,11 +402,7 @@ public class DistributingExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> distributor.execute(
-            configured,
-            executionContext,
-            mock(KsqlSecurityContext.class),
-            null)
+        () -> distributor.execute(configured, executionContext, mock(KsqlSecurityContext.class))
     );
 
     // Then:
@@ -442,11 +429,7 @@ public class DistributingExecutorTest {
     // When:
     final Exception e = assertThrows(
         KsqlException.class,
-        () -> distributor.execute(
-            configured,
-            executionContext,
-            mock(KsqlSecurityContext.class),
-            null)
+        () -> distributor.execute(configured, executionContext, mock(KsqlSecurityContext.class))
     );
 
     // Then:
@@ -459,7 +442,7 @@ public class DistributingExecutorTest {
     doThrow(new ProducerFencedException("Error!")).when(transactionalProducer).commitTransaction();
     final Exception e = assertThrows(
         KsqlServerException.class,
-        () -> distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext, null)
+        () -> distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext)
     );
 
     assertThat(e.getMessage(), containsString("Could not write the statement "
@@ -475,7 +458,7 @@ public class DistributingExecutorTest {
     doThrow(new RuntimeException("Error!")).when(transactionalProducer).commitTransaction();
     final Exception e = assertThrows(
         KsqlServerException.class,
-        () -> distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext, null)
+        () -> distributor.execute(CONFIGURED_STATEMENT, executionContext, securityContext)
     );
 
     assertThat(e.getMessage(), containsString("Could not write the statement "
@@ -507,11 +490,7 @@ public class DistributingExecutorTest {
     doReturn(dataSource).when(metaStore).getSource(SourceName.of("TEST"));
 
     // When:
-    final StatementExecutorResponse response = distributor.execute(
-        configured,
-        executionContext,
-        securityContext,
-        null);
+    final StatementExecutorResponse response = distributor.execute(configured, executionContext, securityContext);
 
     // Then:
     assertThat("Should be present", response.getEntity().isPresent());

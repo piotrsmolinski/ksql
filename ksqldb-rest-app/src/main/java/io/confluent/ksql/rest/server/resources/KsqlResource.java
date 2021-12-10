@@ -39,7 +39,6 @@ import io.confluent.ksql.rest.entity.KsqlEntity;
 import io.confluent.ksql.rest.entity.KsqlEntityList;
 import io.confluent.ksql.rest.entity.KsqlRequest;
 import io.confluent.ksql.rest.entity.KsqlWarning;
-import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.rest.server.ServerUtil;
 import io.confluent.ksql.rest.server.computation.CommandRunner;
 import io.confluent.ksql.rest.server.computation.DistributingExecutor;
@@ -112,7 +111,6 @@ public class KsqlResource implements KsqlConfigurable {
   private final Errors errorHandler;
   private KsqlHostInfo localHost;
   private URL localUrl;
-  private final KsqlRestConfig restConfig;
 
   public KsqlResource(
       final KsqlEngine ksqlEngine,
@@ -121,8 +119,7 @@ public class KsqlResource implements KsqlConfigurable {
       final ActivenessRegistrar activenessRegistrar,
       final Optional<KsqlAuthorizationValidator> authorizationValidator,
       final Errors errorHandler,
-      final DenyListPropertyValidator denyListPropertyValidator,
-      final KsqlRestConfig restConfig
+      final DenyListPropertyValidator denyListPropertyValidator
   ) {
     this(
         ksqlEngine,
@@ -133,8 +130,7 @@ public class KsqlResource implements KsqlConfigurable {
         authorizationValidator,
         errorHandler,
         denyListPropertyValidator,
-        commandRunner::getCommandRunnerDegradedWarning,
-        restConfig
+        commandRunner::getCommandRunnerDegradedWarning
     );
   }
 
@@ -147,8 +143,7 @@ public class KsqlResource implements KsqlConfigurable {
       final Optional<KsqlAuthorizationValidator> authorizationValidator,
       final Errors errorHandler,
       final DenyListPropertyValidator denyListPropertyValidator,
-      final Supplier<String> commandRunnerWarning,
-      final KsqlRestConfig restConfig
+      final Supplier<String> commandRunnerWarning
   ) {
     this.ksqlEngine = Objects.requireNonNull(ksqlEngine, "ksqlEngine");
     this.commandRunner = Objects.requireNonNull(commandRunner, "commandRunner");
@@ -164,7 +159,6 @@ public class KsqlResource implements KsqlConfigurable {
         Objects.requireNonNull(denyListPropertyValidator, "denyListPropertyValidator");
     this.commandRunnerWarning =
         Objects.requireNonNull(commandRunnerWarning, "commandRunnerWarning");
-    this.restConfig = Objects.requireNonNull(restConfig, "restConfig");
   }
 
   @Override
@@ -234,8 +228,7 @@ public class KsqlResource implements KsqlConfigurable {
               localHost,
               localUrl,
               false
-          ),
-          restConfig
+          )
       );
       return EndpointResponse.ok(entities);
     } catch (final Exception e) {
@@ -293,7 +286,6 @@ public class KsqlResource implements KsqlConfigurable {
               requestConfig.getBoolean(KsqlRequestConfig.KSQL_REQUEST_INTERNAL_REQUEST),
               request.getSessionVariables()
           ),
-          restConfig,
           request.getKsql()
       );
 
@@ -316,8 +308,7 @@ public class KsqlResource implements KsqlConfigurable {
               localUrl,
               requestConfig.getBoolean(KsqlRequestConfig.KSQL_REQUEST_INTERNAL_REQUEST),
               request.getSessionVariables()
-          ),
-          restConfig
+          )
       );
 
       LOG.info("Processed successfully: " + request);

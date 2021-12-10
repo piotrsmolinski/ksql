@@ -50,7 +50,6 @@ import io.confluent.ksql.rest.entity.SourceInfo.Table;
 import io.confluent.ksql.rest.entity.StreamsList;
 import io.confluent.ksql.rest.entity.TablesList;
 import io.confluent.ksql.rest.server.KsqlRestApplication;
-import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.services.ServiceContext;
 import io.confluent.ksql.statement.ConfiguredStatement;
 import io.confluent.ksql.util.KsqlConfig;
@@ -131,8 +130,7 @@ public final class ListSourceExecutor {
       final ConfiguredStatement<ListStreams> statement,
       final SessionProperties sessionProperties,
       final KsqlExecutionContext executionContext,
-      final ServiceContext serviceContext,
-      final KsqlRestConfig restConfig
+      final ServiceContext serviceContext
   ) {
     final List<KsqlStream<?>> ksqlStreams = getSpecificStreams(executionContext);
 
@@ -159,8 +157,7 @@ public final class ListSourceExecutor {
       final ConfiguredStatement<ListTables> statement,
       final SessionProperties sessionProperties,
       final KsqlExecutionContext executionContext,
-      final ServiceContext serviceContext,
-      final KsqlRestConfig restConfig
+      final ServiceContext serviceContext
   ) {
     final List<KsqlTable<?>> ksqlTables = getSpecificTables(executionContext);
 
@@ -186,8 +183,7 @@ public final class ListSourceExecutor {
       final ConfiguredStatement<DescribeStreams> statement,
       final SessionProperties sessionProperties,
       final KsqlExecutionContext executionContext,
-      final ServiceContext serviceContext,
-      final KsqlRestConfig restConfig
+      final ServiceContext serviceContext
   ) {
     final List<KsqlStream<?>> ksqlStreams = getSpecificStreams(executionContext);
 
@@ -205,8 +201,7 @@ public final class ListSourceExecutor {
       final ConfiguredStatement<DescribeTables> statement,
       final SessionProperties sessionProperties,
       final KsqlExecutionContext executionContext,
-      final ServiceContext serviceContext,
-      final KsqlRestConfig restConfig
+      final ServiceContext serviceContext
   ) {
     final List<KsqlTable<?>> ksqlTables = getSpecificTables(executionContext);
 
@@ -224,8 +219,7 @@ public final class ListSourceExecutor {
       final ConfiguredStatement<ShowColumns> statement,
       final SessionProperties sessionProperties,
       final KsqlExecutionContext executionContext,
-      final ServiceContext serviceContext,
-      final KsqlRestConfig restConfig
+      final ServiceContext serviceContext
   ) {
     final ShowColumns showColumns = statement.getStatement();
     final SourceDescriptionWithWarnings descriptionWithWarnings = describeSource(

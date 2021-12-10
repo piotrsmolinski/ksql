@@ -83,11 +83,7 @@ public class DropConnectorExecutorTest {
         .thenReturn(ConnectResponse.success("foo", HttpStatus.SC_OK));
 
     // When:
-    DropConnectorExecutor.execute(DROP_CONNECTOR_CONFIGURED,
-        mock(SessionProperties.class),
-        null,
-        serviceContext,
-        null);
+    DropConnectorExecutor.execute(DROP_CONNECTOR_CONFIGURED, mock(SessionProperties.class),null, serviceContext);
 
     // Then:
     verify(connectClient).delete("foo");
@@ -101,11 +97,7 @@ public class DropConnectorExecutorTest {
 
     // When:
     final Optional<KsqlEntity> response = DropConnectorExecutor
-        .execute(DROP_CONNECTOR_CONFIGURED,
-            mock(SessionProperties.class),
-            null,
-            serviceContext,
-            null).getEntity();
+        .execute(DROP_CONNECTOR_CONFIGURED, mock(SessionProperties.class),null, serviceContext).getEntity();
 
     // Then:
     assertThat("expected response", response.isPresent());
@@ -120,17 +112,9 @@ public class DropConnectorExecutorTest {
 
     // When:
     final Optional<KsqlEntity> entity = DropConnectorExecutor
-        .execute(DROP_CONNECTOR_CONFIGURED,
-            mock(SessionProperties.class),
-            null,
-            serviceContext,
-            null).getEntity();
+        .execute(DROP_CONNECTOR_CONFIGURED, mock(SessionProperties.class), null, serviceContext).getEntity();
     final Optional<KsqlEntity> entityIfExists = DropConnectorExecutor
-            .execute(DROP_CONNECTOR_IF_EXISTS_CONFIGURED,
-                mock(SessionProperties.class),
-                null,
-                serviceContext,
-                null).getEntity();
+            .execute(DROP_CONNECTOR_IF_EXISTS_CONFIGURED, mock(SessionProperties.class), null, serviceContext).getEntity();
 
     // Then:
     assertThat("Expected non-empty response", entity.isPresent());
@@ -147,11 +131,7 @@ public class DropConnectorExecutorTest {
 
     // When:
     final Optional<KsqlEntity> entity = DropConnectorExecutor
-            .execute(DROP_CONNECTOR_IF_EXISTS_CONFIGURED,
-                mock(SessionProperties.class),
-                null,
-                serviceContext,
-                null).getEntity();
+            .execute(DROP_CONNECTOR_IF_EXISTS_CONFIGURED, mock(SessionProperties.class), null, serviceContext).getEntity();
 
     // Then:
     assertThat("Expected non-empty response", entity.isPresent());
