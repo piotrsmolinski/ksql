@@ -21,6 +21,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import com.google.common.collect.ImmutableList;
+import io.confluent.ksql.parser.tree.ListTopics;
 import io.confluent.ksql.rest.SessionProperties;
 import io.confluent.ksql.rest.entity.KafkaTopicInfo;
 import io.confluent.ksql.rest.entity.KafkaTopicInfoExtended;
@@ -29,6 +30,7 @@ import io.confluent.ksql.rest.entity.KafkaTopicsListExtended;
 import io.confluent.ksql.rest.server.TemporaryEngine;
 import io.confluent.ksql.services.ServiceContext;
 import io.confluent.ksql.services.TestServiceContext;
+import io.confluent.ksql.statement.ConfiguredStatement;
 import java.util.Collection;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.ConsumerGroupListing;
@@ -50,6 +52,8 @@ public class ListTopicsExecutorTest {
 
   private ServiceContext serviceContext;
 
+  private CustomExecutors customExecutors;
+
   @Before
   public void setUp() {
      serviceContext = TestServiceContext.create(
@@ -59,6 +63,7 @@ public class ListTopicsExecutorTest {
           engine.getServiceContext().getSchemaRegistryClientFactory(),
           engine.getServiceContext().getConnectClient()
     );
+    customExecutors = new CustomExecutors(new DefaultConnectServerErrors());
   }
 
   @Test
@@ -70,8 +75,8 @@ public class ListTopicsExecutorTest {
 
     // When:
     final KafkaTopicsList topicsList =
-        (KafkaTopicsList) CustomExecutors.LIST_TOPICS.execute(
-            engine.configure("LIST TOPICS;"),
+        (KafkaTopicsList) customExecutors.listTopics().execute(
+            (ConfiguredStatement<ListTopics>) engine.configure("LIST TOPICS;"),
             mock(SessionProperties.class),
             engine.getEngine(),
             serviceContext
@@ -93,8 +98,8 @@ public class ListTopicsExecutorTest {
 
     // When:
     final KafkaTopicsList topicsList =
-        (KafkaTopicsList) CustomExecutors.LIST_TOPICS.execute(
-            engine.configure("LIST ALL TOPICS;"),
+        (KafkaTopicsList) customExecutors.listTopics().execute(
+            (ConfiguredStatement<ListTopics>) engine.configure("LIST ALL TOPICS;"),
             mock(SessionProperties.class),
             engine.getEngine(),
             serviceContext
@@ -116,8 +121,8 @@ public class ListTopicsExecutorTest {
 
     // When:
     final KafkaTopicsList topicsList =
-        (KafkaTopicsList) CustomExecutors.LIST_TOPICS.execute(
-            engine.configure("LIST TOPICS;"),
+        (KafkaTopicsList) customExecutors.listTopics().execute(
+            (ConfiguredStatement<ListTopics>) engine.configure("LIST TOPICS;"),
             mock(SessionProperties.class),
             engine.getEngine(),
             serviceContext
@@ -145,8 +150,8 @@ public class ListTopicsExecutorTest {
 
     // When:
     final KafkaTopicsListExtended topicsList =
-        (KafkaTopicsListExtended) CustomExecutors.LIST_TOPICS.execute(
-            engine.configure("LIST TOPICS EXTENDED;"),
+        (KafkaTopicsListExtended) customExecutors.listTopics().execute(
+            (ConfiguredStatement<ListTopics>) engine.configure("LIST TOPICS EXTENDED;"),
             mock(SessionProperties.class),
             engine.getEngine(),
             serviceContext

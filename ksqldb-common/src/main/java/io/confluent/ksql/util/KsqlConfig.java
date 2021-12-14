@@ -608,6 +608,11 @@ public class KsqlConfig extends AbstractConfig {
   public static final String KSQL_QUERY_CLEANUP_SHUTDOWN_TIMEOUT_MS_DOC
       = "The total time that the query cleanup spends trying to clean things up on shutdown.";
 
+  public static final String KSQL_CONNECT_SERVER_ERROR_HANDLER = "ksql.connect.error.handler";
+  public static final String KSQL_CONNECT_SERVER_ERROR_HANDLER_DEFAULT = null;
+  private static final String KSQL_CONNECT_SERVER_ERROR_HANDLER_DOC =
+      "A class that allows the KSQL server to customize connect error handling.";
+
   private enum ConfigGeneration {
     LEGACY,
     CURRENT
@@ -1326,6 +1331,13 @@ public class KsqlConfig extends AbstractConfig {
             KSQL_HEADERS_COLUMNS_ENABLED_DEFAULT,
             Importance.LOW,
             KSQL_HEADERS_COLUMNS_ENABLED_DOC
+        )
+        .define(
+            KSQL_CONNECT_SERVER_ERROR_HANDLER,
+            Type.CLASS,
+            KSQL_CONNECT_SERVER_ERROR_HANDLER_DEFAULT,
+            Importance.LOW,
+            KSQL_CONNECT_SERVER_ERROR_HANDLER_DOC
         )
         .withClientSslSupport();
 
