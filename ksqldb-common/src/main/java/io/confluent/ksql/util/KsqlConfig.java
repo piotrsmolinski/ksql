@@ -126,6 +126,12 @@ public class KsqlConfig extends AbstractConfig {
   public static final String CONNECT_BASIC_AUTH_FAIL_ON_UNREADABLE_CREDENTIALS =
       KSQL_CONNECT_PREFIX + "basic.auth.credentials.fail.on.unreadable";
 
+  public static final String KSQL_CONNECT_SERVER_ERROR_HANDLER =
+      KSQL_CONNECT_PREFIX + "error.handler";
+  public static final String KSQL_CONNECT_SERVER_ERROR_HANDLER_DEFAULT = null;
+  private static final String KSQL_CONNECT_SERVER_ERROR_HANDLER_DOC =
+      "A class that allows the KSQL server to customize connect error handling.";
+
   public static final String KSQL_ENABLE_UDFS = "ksql.udfs.enabled";
 
   public static final String KSQL_EXT_DIR = "ksql.extension.dir";
@@ -607,11 +613,6 @@ public class KsqlConfig extends AbstractConfig {
   public static final long KSQL_QUERY_CLEANUP_SHUTDOWN_TIMEOUT_MS_DEFAULT = 30000;
   public static final String KSQL_QUERY_CLEANUP_SHUTDOWN_TIMEOUT_MS_DOC
       = "The total time that the query cleanup spends trying to clean things up on shutdown.";
-
-  public static final String KSQL_CONNECT_SERVER_ERROR_HANDLER = "ksql.connect.error.handler";
-  public static final String KSQL_CONNECT_SERVER_ERROR_HANDLER_DEFAULT = null;
-  private static final String KSQL_CONNECT_SERVER_ERROR_HANDLER_DOC =
-      "A class that allows the KSQL server to customize connect error handling.";
 
   private enum ConfigGeneration {
     LEGACY,

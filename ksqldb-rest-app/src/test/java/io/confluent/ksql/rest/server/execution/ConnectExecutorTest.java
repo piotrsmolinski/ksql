@@ -40,7 +40,6 @@ import io.confluent.ksql.rest.entity.CreateConnectorEntity;
 import io.confluent.ksql.rest.entity.ErrorEntity;
 import io.confluent.ksql.rest.entity.KsqlEntity;
 import io.confluent.ksql.rest.entity.WarningEntity;
-import io.confluent.ksql.rest.server.KsqlRestConfig;
 import io.confluent.ksql.services.ConnectClient;
 import io.confluent.ksql.services.ConnectClient.ConnectResponse;
 import io.confluent.ksql.services.ServiceContext;
@@ -261,13 +260,14 @@ public class ConnectExecutorTest {
   @Test
   public void shouldReturnPluggableErrors() {
     //Given:
+    givenValidationSuccess();
     when(connectClient.create(anyString(), anyMap()))
         .thenReturn(
             ConnectResponse.failure("FORBIDDEN", HttpStatus.SC_FORBIDDEN));
 
-    final KsqlRestConfig restConfig = new KsqlRestConfig(ImmutableMap.of(
+    final KsqlConfig config = new KsqlConfig(ImmutableMap.of(
         KSQL_CONNECT_SERVER_ERROR_HANDLER, DummyConnectServerErrors.class));
-    final ConnectServerErrors connectErrorHandler = restConfig.getConfiguredInstance(
+    final ConnectServerErrors connectErrorHandler = config.getConfiguredInstance(
         KSQL_CONNECT_SERVER_ERROR_HANDLER,
         ConnectServerErrors.class);
 
